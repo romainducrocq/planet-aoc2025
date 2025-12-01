@@ -1,5 +1,7 @@
 import `libaoc`
 
+# TODO fix memory leak
+
 filedata: struc FileData = $(nil)
 
 fn part_1(none) i32 {
