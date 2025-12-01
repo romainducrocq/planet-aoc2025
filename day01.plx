@@ -4,11 +4,11 @@ filedata: struc FileData = $(nil)
 
 fn part_1(none) i32 {
     pos: i64 = 50
-    count: i32 = 0
+    password: i32 = 0
     loop i: i32 = 0 while i < filedata.size .. ++i {
-        s: string = filedata.buf[i]
-        dir: char = s++[]
-        clicks: i64 = parse_number(@s)
+        str: string = filedata.buf[i]
+        dir: char = str++[]
+        clicks: i64 = parse_number(@str)
         if dir == 'R' {
             pos = (pos + clicks) % 100
         }
@@ -19,25 +19,25 @@ fn part_1(none) i32 {
             }
         }
         if pos == 0 {
-            count++
+            password++
         }
     }
-    return count
+    return password
 }
 
 fn part_2(none) i32 {
     pos: i64 = 50
-    count: i32 = 0
+    password: i32 = 0
     loop i: i32 = 0 while i < filedata.size .. ++i {
-        s: string = filedata.buf[i]
-        dir: char = s++[]
-        clicks: i64 = parse_number(@s)
+        str: string = filedata.buf[i]
+        dir: char = str++[]
+        clicks: i64 = parse_number(@str)
         if dir == 'R' {
             loop j: i32 = 0 while j < clicks .. ++j {
                 pos++
                 if pos == 100 {
                     pos = 0
-                    count++
+                    password++
                 }
             }
         }
@@ -45,7 +45,7 @@ fn part_2(none) i32 {
             loop j: i32 = 0 while j < clicks .. ++j {
                 pos--
                 if pos == 0 {
-                    count++
+                    password++
                 }
                 if pos < 0 {
                     pos += 100
@@ -53,7 +53,7 @@ fn part_2(none) i32 {
             }
         }
     }
-    return count
+    return password
 }
 
 pub fn main(none) i32 {

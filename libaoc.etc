@@ -38,18 +38,18 @@ type struc FileData(
 pub fn read_file(filename: string, filedata: *struc FileData) none {
     filedata[].size = 0
     filedata[].maxlen = 0
-    f: *struc FILE = fopen(filename, "r")
-    if f == nil {
+    file: *struc FILE = fopen(filename, "r")
+    if file == nil {
         puts("Cannot open file")
         puts(filename)
         exit(1)
     }
-    fseek(f, 0, SEEK_END)
-    len: i32 = ftell(f)
-    fseek(f, 0, SEEK_SET)
+    fseek(file, 0, SEEK_END)
+    len: i32 = ftell(file)
+    fseek(file, 0, SEEK_SET)
     buf: string = cast<string>(malloc(sizeof<char> * len + 1))
-    fread(buf, 1, len, f)
-    fclose(f)
+    fread(buf, 1, len, file)
+    fclose(file)
     buf[len] = nil
     loop i: i32 = 0 while i < len .. ++i {
         if buf[i] == '\n' {
