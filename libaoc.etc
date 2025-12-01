@@ -1,0 +1,99 @@
+# malloc.h
+pub fn malloc(size: u64) *any;
+pub fn free(ptr: *any) none;
+
+# stdio.h
+type struc FILE;
+pub SEEK_SET: i32 = 0
+pub SEEK_END: i32 = 2
+
+pub fn fopen(pathname: string, mode: string) *struc FILE;
+pub fn fread(ptr: *any, size: u64, nmemb: u64, stream: *struc FILE) u64;
+pub fn fseek(stream: *struc FILE, offset: i64, whence: i32) i32;
+pub fn ftell(stream: *struc FILE) i64;
+pub fn fclose(stream: *struc FILE) i32;
+
+pub fn puts(s: string) i32;
+pub fn print_i64(n: i64) i32 {
+    fn printf(format: string, n: i64) i32;
+    return printf("%li\n", n)
+}
+
+# stdlib.h
+pub fn exit(status: i32) none;
+
+# string.h
+pub fn strlen(s: string) u64;
+pub fn strcpy(dst: string, src: string) string;
+
+################################################################################
+# AOC 2025
+
+type struc FileData(
+    buf: *string,
+    size: i32,
+    maxlen: i32
+)
+
+pub fn read_file(filename: string, filedata: *struc FileData) none {
+    filedata[].size = 0
+    filedata[].maxlen = 0
+    f: *struc FILE = fopen(filename, "r")
+    if f == nil {
+        puts("Cannot open file")
+        puts(filename)
+        exit(1)
+    }
+    fseek(f, 0, SEEK_END)
+    len: i32 = ftell(f)
+    fseek(f, 0, SEEK_SET)
+    buf: string = cast<string>(malloc(sizeof<char> * len + 1))
+    fread(buf, 1, len, f)
+    fclose(f)
+    buf[len] = nil
+    loop i: i32 = 0 while i < len .. ++i {
+        if buf[i] == '\n' {
+            filedata[].size++
+        }
+    }
+    filedata[].buf = cast<*string>(malloc(filedata[].size * sizeof<string>))
+    s: string = buf
+    loop i: i32 = 0 while i < filedata[].size .. ++i {
+        filedata[].buf[i] = s
+        j: i32 = 0
+        loop while s[] ~= '\n' {
+            if s[] == '\r' {
+                s[] = nil
+            }
+            else {
+                j++
+            }
+            s++
+        }
+        if j > filedata[].maxlen {
+            filedata[].maxlen = j
+        }
+        s++[] = nil
+    }
+    free(buf)
+}
+
+pub fn close_file(filedata: *struc FileData) none {
+    free(filedata[].buf)
+}
+
+pub fn is_digit(c: char) i32 {
+    return '0' <= c and c <= '9'
+}
+pub fn parse_number(s: *string) i64 {
+    sign: i32 = 1
+    if s[][] == '-' {
+        sign = -1
+        (s[])++
+    }
+    value: i64 = 0
+    loop while is_digit(s[][]) .. ++(s[]) {
+        value = 10 * value + s[][] - '0'
+    }
+    return sign * value
+}
