@@ -1,6 +1,6 @@
 import `libaoc`
 
-fn part_1(none) i64 {
+pub fn part_1(none) i64 {
     pos: i64 = 50
     password: i32 = 0
     loop i: i32 = 0 while i < filedata.size .. ++i {
@@ -23,7 +23,7 @@ fn part_1(none) i64 {
     return password
 }
 
-fn part_2(none) i64 {
+pub fn part_2(none) i64 {
     pos: i64 = 50
     password: i32 = 0
     loop i: i32 = 0 while i < filedata.size .. ++i {

@@ -1,6 +1,6 @@
 import `libaoc`
 
-fn part_1(none) i64 {
+pub fn part_1(none) i64 {
     sum: i64 = 0
     str: string = filedata.buf[0]
     loop {
@@ -49,7 +49,7 @@ fn part_1(none) i64 {
     return sum
 }
 
-fn part_2(none) i64 {
+pub fn part_2(none) i64 {
     sum: i64 = 0
     str: string = filedata.buf[0]
     loop {
@@ -70,7 +70,7 @@ fn part_2(none) i64 {
         n2: i64 = parse_number(@str)
         loop n: i64 = n1 while n <= n2 .. n++ {
             buf: [20]char;
-            sprint_i64(buf, 19, n)
+            snprint_i64(buf, 19, n)
             len: i32 = strlen(buf)
             is_match: bool = false
             loop m: i32 = 2 while m <= len .. m++ {
