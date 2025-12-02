@@ -1,9 +1,9 @@
-type struc FileData(
-    buf: *string,
+type struc FileBuf(
+    text: *string,
     size: i32,
     maxlen: i32
 )
-extrn filedata: struc FileData;
+extrn filebuf: struc FileBuf;
 
 pub fn is_digit(c: char) i32;
 pub fn parse_number(str: *string) i64;

@@ -42,9 +42,9 @@ extrn fn strcpy(dst: string, src: string) string;
 
 # TODO fix memory leak
 
-pub fn read_file(filename: string, filedata: *struc FileData) none {
-    filedata[].size = 0
-    filedata[].maxlen = 0
+pub fn read_file(filename: string, filebuf: *struc FileBuf) none {
+    filebuf[].size = 0
+    filebuf[].maxlen = 0
     file: *struc FILE = fopen(filename, "r")
     if file == nil {
         puts("Cannot open file")
@@ -60,13 +60,13 @@ pub fn read_file(filename: string, filedata: *struc FileData) none {
     buf[len] = nil
     loop i: i32 = 0 while i < len .. ++i {
         if buf[i] == '\n' {
-            filedata[].size++
+            filebuf[].size++
         }
     }
-    filedata[].buf = cast<*string>(malloc(filedata[].size * sizeof<string>))
+    filebuf[].text = cast<*string>(malloc(filebuf[].size * sizeof<string>))
     str: string = buf
-    loop i: i32 = 0 while i < filedata[].size .. ++i {
-        filedata[].buf[i] = str
+    loop i: i32 = 0 while i < filebuf[].size .. ++i {
+        filebuf[].text[i] = str
         j: i32 = 0
         loop while str[] ~= '\n' {
             if str[] == '\r' {
@@ -77,16 +77,16 @@ pub fn read_file(filename: string, filedata: *struc FileData) none {
             }
             str++
         }
-        if j > filedata[].maxlen {
-            filedata[].maxlen = j
+        if j > filebuf[].maxlen {
+            filebuf[].maxlen = j
         }
         str++[] = nil
     }
     # free(buf)
 }
 
-pub fn close_file(filedata: *struc FileData) none {
-    ; # free(filedata[].buf)
+pub fn close_file(filebuf: *struc FileBuf) none {
+    ; # free(filebuf[].text)
 }
 
 ##############
@@ -117,14 +117,14 @@ pub fn parse_number(str: *string) i64 {
 extrn fn part_1(none) i64;
 extrn fn part_2(none) i64;
 
-pub filedata: struc FileData = $(nil)
+pub filebuf: struc FileBuf = $(nil)
 
 answers: [12][2]i64 = $(
     $(1147, 6789),             # day 1
     $(8576933996, 25663320831) # day 2
 )
 
-fn get_input(day: i32) *char {
+fn get_input(day: i32) string {
     match day {
         -> 1 { return "input/day01.txt" }
         -> 2 { return "input/day02.txt" }
@@ -136,7 +136,7 @@ fn check_answer(part: i64, answer: i64) none {
     print_i64(part)
     if part ~= answer {
         puts(" - Wrong answer")
-        close_file(@filedata)
+        close_file(@filebuf)
         exit(1)
     }
     puts(" - OK")
@@ -147,10 +147,10 @@ pub fn main(_: i32, args: *string) i32 {
     day: i32 = args[0][len-1] - '0'
     if args[0][len-2] == '1' { day += 10 }
 
-    read_file(get_input(day), @filedata)
+    read_file(get_input(day), @filebuf)
     check_answer(part_1(), answers[day-1][0])
     check_answer(part_2(), answers[day-1][1])
-    close_file(@filedata)
+    close_file(@filebuf)
 
     return 0
 }

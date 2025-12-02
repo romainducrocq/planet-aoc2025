@@ -2,7 +2,7 @@ import `libaoc`
 
 pub fn part_1(none) i64 {
     sum: i64 = 0
-    str: string = filedata.buf[0]
+    str: string = filebuf.text[0]
     loop {
         str2: string = str
         len1: i32 = 0
@@ -51,7 +51,7 @@ pub fn part_1(none) i64 {
 
 pub fn part_2(none) i64 {
     sum: i64 = 0
-    str: string = filedata.buf[0]
+    str: string = filebuf.text[0]
     loop {
         str2: string = str
         len1: i32 = 0
@@ -68,17 +68,17 @@ pub fn part_2(none) i64 {
         n1: i64 = parse_number(@str)
         str++
         n2: i64 = parse_number(@str)
-        loop n: i64 = n1 while n <= n2 .. n++ {
+        loop n: i64 = n1 while n <= n2 .. ++n {
             buf: [20]char;
             snprint_i64(buf, 19, n)
             len: i32 = strlen(buf)
             is_match: bool = false
-            loop m: i32 = 2 while m <= len .. m++ {
+            loop m: i32 = 2 while m <= len .. ++m {
                 if len % m == 0 {
                     is_match = true
                     w: i32 = len / m
-                    loop i: i32 = 1 while i < m .. i++ {
-                        loop j: i32 = 0 while j < w .. j++ {
+                    loop i: i32 = 1 while i < m .. ++i {
+                        loop j: i32 = 0 while j < w .. ++j {
                             if buf[j] ~= buf[j + i * w] {
                                 is_match = false
                             }
