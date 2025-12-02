@@ -20,7 +20,7 @@ extrn fn fclose(stream: *struc FILE) i32;
 extrn fn puts(s: string) i32;
 pub fn print_i64(n: i64) i32 {
     extrn fn printf(format: string, n: i64) i32;
-    return printf("%li\n", n)
+    return printf("%li", n)
 }
 pub fn sprint_i64(str: string, size: u64, n: i64) i32 {
     extrn fn snprintf(str: string, size: u64, format: string, n: i64) i32;
@@ -121,10 +121,37 @@ pub fn parse_number(str: *string) i64 {
 
 fn part_1(none) i64;
 fn part_2(none) i64;
-    
-pub fn solve_puzzle(input: string) none {
-    read_file(input, @filedata)
-    print_i64(part_1())
-    print_i64(part_2())
+
+pub answers: [12][2]i64 = $(
+    $(1147, 6789),
+    $(8576933996, 25663320831)
+)
+
+pub fn get_input(day: i32) *char {
+    match day {
+        -> 1 { return "input/day01.txt" }
+        -> 2 { return "input/day02.txt" }
+        otherwise { return "" }
+    }
+}
+
+pub fn check_answer(part: i64, answer: i64) none {
+    print_i64(part)
+    if part ~= answer {
+        puts(" - Wrong answer")
+        close_file(@filedata)
+        exit(1)
+    }
+    puts(" - OK")
+}
+
+pub fn main(_: i32, args: *string) i32 {
+    len: u64 = strlen(args[0])
+    day: i32 = args[0][len-1] - '0'
+    if args[0][len-2] == '1' { day += 10 }
+    read_file(get_input(day), @filedata)
+    check_answer(part_1(), answers[day-1][0])
+    check_answer(part_2(), answers[day-1][1])
     close_file(@filedata)
+    return 0
 }

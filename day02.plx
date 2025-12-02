@@ -100,8 +100,3 @@ fn part_2(none) i64 {
     }
     return sum
 }
-
-pub fn main(none) i32 {
-    solve_puzzle("input/day02.txt")
-    return 0
-}

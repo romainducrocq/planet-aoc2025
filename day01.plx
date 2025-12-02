@@ -53,8 +53,3 @@ fn part_2(none) i64 {
     }
     return password
 }
-
-pub fn main(none) i32 {
-    solve_puzzle("input/day01.txt")
-    return 0
-}
