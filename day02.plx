@@ -2,7 +2,7 @@ import `libaoc`
 
 pub fn part_1(none) i64 {
     sum: i64 = 0
-    str: string = filebuf.text[0]
+    str: string = input.text[0]
     loop {
         str2: string = str
         len1: i32 = 0
@@ -51,7 +51,7 @@ pub fn part_1(none) i64 {
 
 pub fn part_2(none) i64 {
     sum: i64 = 0
-    str: string = filebuf.text[0]
+    str: string = input.text[0]
     loop {
         str2: string = str
         len1: i32 = 0

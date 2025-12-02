@@ -117,14 +117,14 @@ pub fn parse_number(str: *string) i64 {
 extrn fn part_1(none) i64;
 extrn fn part_2(none) i64;
 
-pub filebuf: struc FileBuf = $(nil)
+pub input: struc FileBuf = $(nil)
 
 answers: [12][2]i64 = $(
     $(1147, 6789),             # day 1
     $(8576933996, 25663320831) # day 2
 )
 
-fn get_input(day: i32) string {
+fn get_filename(day: i32) string {
     match day {
         -> 1 { return "input/day01.txt" }
         -> 2 { return "input/day02.txt" }
@@ -136,7 +136,7 @@ fn check_answer(part: i64, answer: i64) none {
     print_i64(part)
     if part ~= answer {
         puts(" - Wrong answer")
-        close_file(@filebuf)
+        close_file(@input)
         exit(1)
     }
     puts(" - OK")
@@ -147,10 +147,10 @@ pub fn main(_: i32, args: *string) i32 {
     day: i32 = args[0][len-1] - '0'
     if args[0][len-2] == '1' { day += 10 }
 
-    read_file(get_input(day), @filebuf)
+    read_file(get_filename(day), @input)
     check_answer(part_1(), answers[day-1][0])
     check_answer(part_2(), answers[day-1][1])
-    close_file(@filebuf)
+    close_file(@input)
 
     return 0
 }

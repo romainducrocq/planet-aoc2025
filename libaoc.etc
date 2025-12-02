@@ -3,7 +3,7 @@ type struc FileBuf(
     size: i32,
     maxlen: i32
 )
-extrn filebuf: struc FileBuf;
+extrn input: struc FileBuf;
 
 pub fn is_digit(c: char) i32;
 pub fn parse_number(str: *string) i64;
