@@ -1,10 +1,6 @@
 import `libaoc`
 
-# TODO fix memory leak
-
-filedata: struc FileData = $(nil)
-
-fn part_1(none) i32 {
+fn part_1(none) i64 {
     pos: i64 = 50
     password: i32 = 0
     loop i: i32 = 0 while i < filedata.size .. ++i {
@@ -27,7 +23,7 @@ fn part_1(none) i32 {
     return password
 }
 
-fn part_2(none) i32 {
+fn part_2(none) i64 {
     pos: i64 = 50
     password: i32 = 0
     loop i: i32 = 0 while i < filedata.size .. ++i {
@@ -59,8 +55,6 @@ fn part_2(none) i32 {
 }
 
 pub fn main(none) i32 {
-    read_file("input/day01.txt", @filedata)
-    print_i64(part_1())
-    print_i64(part_2())
-    close_file(@filedata)
+    solve_puzzle("input/day01.txt")
+    return 0
 }
