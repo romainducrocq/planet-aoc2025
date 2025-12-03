@@ -120,14 +120,16 @@ extrn fn part_2(none) i64;
 pub input: struc FileBuf = $(nil)
 
 answers: [12][2]i64 = $(
-    $(1147, 6789),             # day 1
-    $(8576933996, 25663320831) # day 2
+    $(1147, 6789),              # day 1
+    $(8576933996, 25663320831), # day 2
+    $(17301, 172162399742349)   # day 3
 )
 
 fn get_filename(day: i32) string {
     match day {
         -> 1 { return "input/day01.txt" }
         -> 2 { return "input/day02.txt" }
+        -> 3 { return "input/day03.txt" }
         otherwise { return "" }
     }
 }
