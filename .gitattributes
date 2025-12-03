@@ -1,4 +1,4 @@
-*.plx linguist-language=rs
-*.etc linguist-language=rs
+*.plx linguist-language=py
+*.etc linguist-language=py
 ** linguist-vendored
 
