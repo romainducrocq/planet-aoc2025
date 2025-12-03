@@ -1,0 +1,4 @@
+*.plx linguist-language=rs
+*.etc linguist-language=rs
+** linguist-vendored
+
