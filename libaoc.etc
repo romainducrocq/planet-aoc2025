@@ -7,5 +7,7 @@ extrn input: struc FileBuf;
 
 pub fn is_digit(c: char) i32;
 pub fn parse_number(str: *string) i64;
+pub fn dd(i: i32, j: i32, filebuf: *struc FileBuf) char;
+
 pub fn snprint_i64(str: string, size: u64, n: i64) i32;
 extrn fn strlen(s: string) u64;

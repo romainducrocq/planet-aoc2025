@@ -89,6 +89,12 @@ pub fn close_file(filebuf: *struc FileBuf) none {
     ; # free(filebuf[].text)
 }
 
+pub fn dd(i: i32, j: i32, filebuf: *struc FileBuf) char {
+    return ? (
+        i >= 0 and i < filebuf[].size and j >= 0 and j < filebuf[].maxlen
+    ) then filebuf[].text[i][j] else ' '
+}
+
 ##############
 # Common Lib #
 ##############
@@ -122,7 +128,8 @@ pub input: struc FileBuf = $(nil)
 answers: [12][2]i64 = $(
     $(1147, 6789),              # day 1
     $(8576933996, 25663320831), # day 2
-    $(17301, 172162399742349)   # day 3
+    $(17301, 172162399742349),  # day 3
+    $(1460, 9243)  # day 4
 )
 
 fn get_filename(day: i32) string {
@@ -130,6 +137,7 @@ fn get_filename(day: i32) string {
         -> 1 { return "input/day01.txt" }
         -> 2 { return "input/day02.txt" }
         -> 3 { return "input/day03.txt" }
+        -> 4 { return "input/day04.txt" }
         otherwise { return "" }
     }
 }
