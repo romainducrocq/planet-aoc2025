@@ -34,7 +34,7 @@ extrn fn exit(status: i32) none;
 
 # string.h
 extrn fn strlen(s: string) u64;
-extrn fn strcpy(dst: string, src: string) string;
+extrn fn strcpy(dst: string, src: string) *char;
 
 #############
 # File Data #
@@ -129,18 +129,9 @@ answers: [12][2]i64 = $(
     $(1147, 6789),              # day 1
     $(8576933996, 25663320831), # day 2
     $(17301, 172162399742349),  # day 3
-    $(1460, 9243)  # day 4
+    $(1460, 9243),              # day 4
+    $(0, 0)                     # day 5
 )
-
-fn get_filename(day: i32) string {
-    match day {
-        -> 1 { return "input/day01.txt" }
-        -> 2 { return "input/day02.txt" }
-        -> 3 { return "input/day03.txt" }
-        -> 4 { return "input/day04.txt" }
-        otherwise { return "" }
-    }
-}
 
 fn check_answer(part: i64, answer: i64) none {
     print_i64(part)
@@ -153,11 +144,14 @@ fn check_answer(part: i64, answer: i64) none {
 }
 
 pub fn main(_: i32, args: *string) i32 {
-    len: u64 = strlen(args[0])
-    day: i32 = args[0][len-1] - '0'
-    if args[0][len-2] == '1' { day += 10 }
+    num: *char = @args[0][strlen(args[0])-2]
+    filename: [16]char = $(nil)
+    strcpy(filename, "input/day00.txt")
+    filename[9] = num[0]
+    filename[10] = num[1]
+    day: i32 = parse_number(@num)
 
-    read_file(get_filename(day), @input)
+    read_file(filename, @input)
     check_answer(part_1(), answers[day-1][0])
     check_answer(part_2(), answers[day-1][1])
     close_file(@input)
