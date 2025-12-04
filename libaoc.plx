@@ -40,9 +40,21 @@ extrn fn strcpy(dst: string, src: string) *char;
 # File Data #
 #############
 
-pub fn read_file(filename: string, filebuf: *struc FileBuf) none {
+pub fn close_file(filebuf: *struc FileBuf) none {
     filebuf[].size = 0
     filebuf[].maxlen = 0
+    if filebuf[].text {
+        free(filebuf[].text)
+        filebuf[].text = nil
+    }
+    if filebuf[].buf {
+        free(filebuf[].buf)
+        filebuf[].buf = nil
+    }
+}
+
+pub fn read_file(filename: string, filebuf: *struc FileBuf) none {
+    close_file(filebuf)
     file: *struc FILE = fopen(filename, "r")
     if file == nil {
         puts("Cannot open file")
@@ -80,11 +92,6 @@ pub fn read_file(filename: string, filebuf: *struc FileBuf) none {
         }
         str++[] = nil
     }
-}
-
-pub fn close_file(filebuf: *struc FileBuf) none {
-    if filebuf[].text { free(filebuf[].text) }
-    if filebuf[].buf { free(filebuf[].buf) }
 }
 
 pub fn dd(i: i32, j: i32, filebuf: *struc FileBuf) char {
