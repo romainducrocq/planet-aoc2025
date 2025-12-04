@@ -1,4 +1,5 @@
 type struc FileBuf(
+    buf: string,
     text: *string,
     size: i32,
     maxlen: i32

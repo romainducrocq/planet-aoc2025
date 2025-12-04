@@ -40,8 +40,6 @@ extrn fn strcpy(dst: string, src: string) *char;
 # File Data #
 #############
 
-# TODO fix memory leak
-
 pub fn read_file(filename: string, filebuf: *struc FileBuf) none {
     filebuf[].size = 0
     filebuf[].maxlen = 0
@@ -54,17 +52,17 @@ pub fn read_file(filename: string, filebuf: *struc FileBuf) none {
     fseek(file, 0, SEEK_END)
     len: i32 = ftell(file)
     fseek(file, 0, SEEK_SET)
-    buf: string = cast<string>(malloc(sizeof<char> * len + 1))
-    fread(buf, 1, len, file)
+    filebuf[].buf = cast<string>(malloc(sizeof<char> * len + 1))
+    fread(filebuf[].buf, 1, len, file)
     fclose(file)
-    buf[len] = nil
+    filebuf[].buf[len] = nil
     loop i: i32 = 0 while i < len .. ++i {
-        if buf[i] == '\n' {
+        if filebuf[].buf[i] == '\n' {
             filebuf[].size++
         }
     }
     filebuf[].text = cast<*string>(malloc(filebuf[].size * sizeof<string>))
-    str: string = buf
+    str: string = filebuf[].buf
     loop i: i32 = 0 while i < filebuf[].size .. ++i {
         filebuf[].text[i] = str
         j: i32 = 0
@@ -82,11 +80,11 @@ pub fn read_file(filename: string, filebuf: *struc FileBuf) none {
         }
         str++[] = nil
     }
-    # free(buf)
 }
 
 pub fn close_file(filebuf: *struc FileBuf) none {
-    ; # free(filebuf[].text)
+    if filebuf[].text { free(filebuf[].text) }
+    if filebuf[].buf { free(filebuf[].buf) }
 }
 
 pub fn dd(i: i32, j: i32, filebuf: *struc FileBuf) char {
