@@ -149,11 +149,11 @@ pub fn main(_: i32, args: *string) i32 {
     strcpy(filename, "input/day00.txt")
     filename[9] = num[0]
     filename[10] = num[1]
-    day: i32 = parse_number(@num)
+    day: i32 = parse_number(@num)-1
 
     read_file(filename, @input)
-    check_answer(part_1(), answers[day-1][0])
-    check_answer(part_2(), answers[day-1][1])
+    check_answer(part_1(), answers[day][0])
+    check_answer(part_2(), answers[day][1])
     close_file(@input)
 
     return 0
