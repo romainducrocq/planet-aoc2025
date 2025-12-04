@@ -22,24 +22,6 @@ pub fn part_1(none) i64 {
     return sum
 }
 
-max: [12]char;
-num: i64 = 0
-
-fn search(left: i32, i: i32, j: i32) none {
-    if left == 0 {
-        return none
-    }
-    pos: char = 12 - left
-    till: i32 = input.maxlen - left + 1
-    max[pos] = '0'
-    loop j1: i32 = j while j1 < till .. ++j1 {
-        if input.text[i][j1] > max[pos] {
-            max[pos] = input.text[i][j1]
-            search(left - 1, i, j1 + 1)
-        }
-    }
-}
-
 pub fn part_2(none) i64 {
     sum: i64 = 0
     loop i: i32 = 0 while i < input.size .. ++i {
