@@ -99,6 +99,8 @@ pub fn dd(i: i32, j: i32, filebuf: *struc FileBuf) char {
 # Common Lib #
 ##############
 
+# TODO replace with isdigit and strtol
+
 pub fn is_digit(c: char) i32 {
     return '0' <= c and c <= '9'
 }
