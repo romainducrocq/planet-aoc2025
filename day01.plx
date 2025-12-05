@@ -3,7 +3,7 @@ import `libaoc`
 pub fn part_1(none) i64 {
     pos: i64 = 50
     password: i32 = 0
-    loop i: i32 = 0 while i < input.size .. ++i {
+    loop i: i32 = 0 while i < input.lines .. ++i {
         str: string = input.text[i]
         dir: char = str++[]
         clicks: i64 = parse_number(@str)
@@ -26,7 +26,7 @@ pub fn part_1(none) i64 {
 pub fn part_2(none) i64 {
     pos: i64 = 50
     password: i32 = 0
-    loop i: i32 = 0 while i < input.size .. ++i {
+    loop i: i32 = 0 while i < input.lines .. ++i {
         str: string = input.text[i]
         dir: char = str++[]
         clicks: i64 = parse_number(@str)

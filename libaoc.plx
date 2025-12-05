@@ -40,21 +40,21 @@ extrn fn strcpy(dst: string, src: string) *char;
 # File Data #
 #############
 
-pub fn close_file(filebuf: *struc FileBuf) none {
-    filebuf[].size = 0
-    filebuf[].maxlen = 0
-    if filebuf[].text {
-        free(filebuf[].text)
-        filebuf[].text = nil
+pub fn fclose_text(filetext: *struc FileText) none {
+    filetext[].lines = 0
+    filetext[].width = 0
+    if filetext[].text {
+        free(filetext[].text)
+        filetext[].text = nil
     }
-    if filebuf[].buf {
-        free(filebuf[].buf)
-        filebuf[].buf = nil
+    if filetext[].buf {
+        free(filetext[].buf)
+        filetext[].buf = nil
     }
 }
 
-pub fn read_file(filename: string, filebuf: *struc FileBuf) none {
-    close_file(filebuf)
+pub fn fread_text(filename: string, filetext: *struc FileText) none {
+    fclose_text(filetext)
     file: *struc FILE = fopen(filename, "r")
     if file == nil {
         puts("Cannot open file")
@@ -64,19 +64,19 @@ pub fn read_file(filename: string, filebuf: *struc FileBuf) none {
     fseek(file, 0, SEEK_END)
     len: i32 = ftell(file)
     fseek(file, 0, SEEK_SET)
-    filebuf[].buf = cast<string>(malloc(sizeof<char> * len + 1))
-    fread(filebuf[].buf, 1, len, file)
+    filetext[].buf = cast<string>(malloc(sizeof<char> * len + 1))
+    fread(filetext[].buf, 1, len, file)
     fclose(file)
-    filebuf[].buf[len] = nil
+    filetext[].buf[len] = nil
     loop i: i32 = 0 while i < len .. ++i {
-        if filebuf[].buf[i] == '\n' {
-            filebuf[].size++
+        if filetext[].buf[i] == '\n' {
+            filetext[].lines++
         }
     }
-    filebuf[].text = cast<*string>(malloc(filebuf[].size * sizeof<string>))
-    str: string = filebuf[].buf
-    loop i: i32 = 0 while i < filebuf[].size .. ++i {
-        filebuf[].text[i] = str
+    filetext[].text = cast<*string>(malloc(filetext[].lines * sizeof<string>))
+    str: string = filetext[].buf
+    loop i: i32 = 0 while i < filetext[].lines .. ++i {
+        filetext[].text[i] = str
         j: i32 = 0
         loop while str[] ~= '\n' {
             if str[] == '\r' {
@@ -87,17 +87,17 @@ pub fn read_file(filename: string, filebuf: *struc FileBuf) none {
             }
             str++
         }
-        if j > filebuf[].maxlen {
-            filebuf[].maxlen = j
+        if j > filetext[].width {
+            filetext[].width = j
         }
         str++[] = nil
     }
 }
 
-pub fn dd(i: i32, j: i32, filebuf: *struc FileBuf) char {
+pub fn dd(i: i32, j: i32, filetext: *struc FileText) char {
     return ? (
-        i >= 0 and i < filebuf[].size and j >= 0 and j < filebuf[].maxlen
-    ) then filebuf[].text[i][j] else ' '
+        i >= 0 and i < filetext[].lines and j >= 0 and j < filetext[].width
+    ) then filetext[].text[i][j] else ' '
 }
 
 ##############
@@ -130,7 +130,7 @@ pub fn parse_number(str: *string) i64 {
 extrn fn part_1(none) i64;
 extrn fn part_2(none) i64;
 
-pub input: struc FileBuf = $(nil)
+pub input: struc FileText = $(nil)
 
 answers: [12][2]i64 = $(
     $(1147, 6789),              # day 1
@@ -145,7 +145,7 @@ fn check_answer(part: i64, answer: i64) none {
     print_i64(part)
     if part ~= answer {
         puts(" - Wrong answer")
-        close_file(@input)
+        fclose_text(@input)
         exit(1)
     }
     puts(" - OK")
@@ -159,10 +159,10 @@ pub fn main(_: i32, args: *string) i32 {
     filename[10] = num[1]
     day: i32 = parse_number(@num)-1
 
-    read_file(filename, @input)
+    fread_text(filename, @input)
     check_answer(part_1(), answers[day][0])
     check_answer(part_2(), answers[day][1])
-    close_file(@input)
+    fclose_text(@input)
 
     return 0
 }

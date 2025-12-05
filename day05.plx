@@ -6,7 +6,7 @@ pub fn part_1(none) i64 {
         i++
     }
     count: i32 = 0
-    loop i++ while i < input.size .. ++i {
+    loop i++ while i < input.lines .. ++i {
         line: *char = input.text[i]
         id: i64 = parse_number(@line)
         loop i1: i32 = 0 while input.text[i1][0] ~= nil .. ++i1 {
