@@ -1,4 +1,4 @@
-import `libaoc`
+import `libutil`
 
 pub fn part_1(none) i64 {
     pos: i64 = 50

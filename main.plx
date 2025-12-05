@@ -1,4 +1,4 @@
-import `libaoc`
+import `libutil`
 
 ############
 # AOC 2025 #
