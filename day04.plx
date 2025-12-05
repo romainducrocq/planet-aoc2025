@@ -8,7 +8,7 @@ pub fn part_1(none) i64 {
                 count: i32 = 0
                 loop i1: i32 = -1 while i1 <= 1 .. ++i1 {
                     loop j1: i32 = -1 while j1 <= 1 .. ++j1 {
-                        if dd(i + i1, j + j1, @input) == '@' {
+                        if ftext_dd(i + i1, j + j1, @input) == '@' {
                             count++
                         }
                     }
@@ -32,7 +32,7 @@ pub fn part_2(none) i64 {
                     count: i32 = 0
                     loop i1: i32 = -1 while i1 <= 1 .. ++i1 {
                         loop j1: i32 = -1 while j1 <= 1 .. ++j1 {
-                            if dd(i + i1, j + j1, @input) == '@' {
+                            if ftext_dd(i + i1, j + j1, @input) == '@' {
                                 count++
                             }
                         }
