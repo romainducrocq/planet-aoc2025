@@ -26,10 +26,10 @@ pub fn part_1(none) i64 {
 type struc range_t(from: i64, to: i64, next: *struc range_t)
 
 fn add_range(ref_ranges: **struc range_t, from: i64, to: i64) none {
-    loop while ref_ranges[] ~= 0 and ref_ranges[][].to < from {
+    loop while ref_ranges[] ~= nil and ref_ranges[][].to < from {
         ref_ranges = @ref_ranges[][].next
     }
-    if ref_ranges[] == 0 or to < ref_ranges[][].from {
+    if ref_ranges[] == nil or to < ref_ranges[][].from {
         new_range: *struc range_t = cast<*struc range_t>(malloc(sizeof<struc range_t>))
         new_range[].from = from
         new_range[].to = to
@@ -40,7 +40,7 @@ fn add_range(ref_ranges: **struc range_t, from: i64, to: i64) none {
     if ref_ranges[][].from < from {
         from = ref_ranges[][].from
     }
-    loop while ref_ranges[][].next ~= 0 and ref_ranges[][].next[].from <= to {
+    loop while ref_ranges[][].next ~= nil and ref_ranges[][].next[].from <= to {
         ref_ranges[] = ref_ranges[][].next
     }
     ref_ranges[][].from = from
@@ -50,7 +50,7 @@ fn add_range(ref_ranges: **struc range_t, from: i64, to: i64) none {
 }
 
 pub fn part_2(none) i64 {
-    ranges: *struc range_t = 0
+    ranges: *struc range_t = nil
     loop i: i32 = 0 while input.text[i][0] ~= nil .. ++i {
         line: *char = input.text[i]
         from: i64 = parse_number(@line)
@@ -59,8 +59,11 @@ pub fn part_2(none) i64 {
         add_range(@ranges, from, to)
     }
     count: i64 = 0
-    loop range: *struc range_t = ranges while range ~= 0 .. range = range[].next {
-        count += range[].to - range[].from + 1
+    loop next_range: *struc range_t = ranges while next_range ~= nil {
+        count += next_range[].to - next_range[].from + 1
+        prev_range: *struc range_t = next_range
+        next_range = next_range[].next
+        free(prev_range)
     }
     return count
 }
