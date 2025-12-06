@@ -2,7 +2,7 @@
 
 [planet](https://github.com/romainducrocq/planet) is a C-like programming language based on my C compiler [wheelcc](https://github.com/romainducrocq/wheelcc), written in C from scratch. I'm using Advent of Code as a fun way to test my language on different sorts of problems.  
 <!---->
-Here are my solutions for AOC 2025 in `planet`!  
+Here are the solutions for AOC 2025 in `planet`!  
 
 ### Quick install
 
