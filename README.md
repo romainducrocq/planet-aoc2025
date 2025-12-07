@@ -1,6 +1,6 @@
 ## Advent of Code 2025 with planet
 
-[planet](https://github.com/romainducrocq/planet) is a C-like programming language based on my C compiler [wheelcc](https://github.com/romainducrocq/wheelcc), written in C from scratch. I'm using Advent of Code as a fun way to test my language on different sorts of problems.  
+[planet](https://github.com/romainducrocq/planet) is a C-like programming language based on my C compiler [wheelcc](https://github.com/romainducrocq/wheelcc), written in C from scratch for Linux and MacOS. It compiles programs to native x86-64 assembly and uses the C standard library at runtime. I'm using Advent of Code as a fun way to test my language on different sorts of problems.  
 <!---->
 Here are the solutions for AOC 2025 in `planet`!  
 
