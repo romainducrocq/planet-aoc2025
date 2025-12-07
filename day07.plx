@@ -37,6 +37,7 @@ pub fn part_2(none) i64 {
             break
         }
     }
+    count: i64;
     loop i: i32 = 2 while i < input.lines .. i += 2 {
         next_beams: [200]i64;
         loop j: i32 = 0 while j < input.width .. ++j {
@@ -56,10 +57,10 @@ pub fn part_2(none) i64 {
         loop j: i32 = 0 while j < input.width .. ++j {
             beams[j] = next_beams[j]
         }
-        count: i64 = 0
+        count = 0
         loop j: i32 = 0 while j < input.width .. ++j {
             count += beams[j]
         }
-        return count
     }
+    return count
 }
