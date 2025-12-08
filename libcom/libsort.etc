@@ -1,0 +1,2 @@
+extrn fn bsearch_f(key: *any, base: *any, nmemb: u64, size: u64) *any;
+extrn fn qsort_f(base: *any, nmemb: u64, size: u64) none;

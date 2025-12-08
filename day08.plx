@@ -1,6 +1,5 @@
 import `libutil`
-
-extrn fn qsort_f(base: *any, nmemb: u64, size: u64) none;
+import `libcom/libsort`
 
 type struc dist_t(box1: i32, box2: i32, dist_sq: i64)
 type struc box_t(x: i64, y: i64, z: i64, circuit: i32)

@@ -1,1 +1,3 @@
 /build/
+/libcom/*.o
+/libcom/*.so
