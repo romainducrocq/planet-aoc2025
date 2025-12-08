@@ -1,4 +1,5 @@
 import `libutil`
+use `stdlib`
 
 type struc dist_t(box1: i32, box2: i32, dist_sq: i64)
 type struc box_t(x: i64, y: i64, z: i64, circuit: i32)
@@ -24,6 +25,9 @@ pub fn qsort_compare(a: *any, b: *any) i32 {
             return -1
         }
     }
+}
+pub fn bsearch_compare(a: *any, b: *any) i32 {
+    ;
 }
 
 pub fn part_1(none) i64 {
