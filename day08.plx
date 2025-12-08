@@ -27,9 +27,6 @@ pub fn qsort_compare(a: *any, b: *any) i32 {
         }
     }
 }
-pub fn bsearch_compare(a: *any, b: *any) i32 {
-    ;
-}
 
 pub fn part_1(none) i64 {
     loop i: i32 = 0 while i < input.lines .. ++i {
