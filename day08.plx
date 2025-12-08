@@ -17,7 +17,8 @@ pub fn qsort_compare(a: *any, b: *any) i32 {
         -> 2 { # compare_dist
             a_dist: *struc dist_t = cast<*struc dist_t>(a)
             b_dist: *struc dist_t = cast<*struc dist_t>(b)
-            return ? b_dist[].dist_sq < a_dist[].dist_sq then 1 else ? b_dist[].dist_sq > a_dist[].dist_sq then -1 else 0
+            return ? b_dist[].dist_sq < a_dist[].dist_sq then 1 else (
+                ? b_dist[].dist_sq > a_dist[].dist_sq then -1 else 0)
         }
         otherwise {
             return -1
