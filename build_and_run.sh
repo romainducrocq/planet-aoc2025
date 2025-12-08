@@ -16,6 +16,7 @@ function run_day () {
     LINK_LIB=""
     if [ ${USE_QSORT} -eq 0 ]; then
         ./libcom/libsort.sh --qsort
+        if [ ${?} -ne 0 ]; then exit 1; fi
         LINK_LIB="-Llibcom/ -lsort"
         export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${PWD}/libcom/"
     fi
