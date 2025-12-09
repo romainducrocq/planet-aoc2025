@@ -3,7 +3,7 @@
 function run_day () {
     DAY="${1}"
     USE_QSORT=1
-    if [ ${1} -eq 8 ]; then
+    if [ ${1} -eq 8 ] || [ ${1} -eq 9 ]; then
         USE_QSORT=0
     fi
     if [ ${1} -lt 10 ]; then
@@ -32,7 +32,7 @@ mkdir -p build/
 if [ ! -z "${1}" ]; then
     run_day ${1}
 else
-    for i in $(seq 1 8); do
+    for i in $(seq 1 9); do
         run_day ${i}
     done
 fi
