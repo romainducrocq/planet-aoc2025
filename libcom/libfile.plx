@@ -16,12 +16,11 @@ pub fn ftext_close(filetext: *struc FileText) none {
     }
 }
 
-pub fn ftext_read(filename: string, filetext: *struc FileText) none {
+pub fn ftext_read(filename: string, filetext: *struc FileText) i32 {
     ftext_close(filetext)
     file: *struc FILE = fopen(filename, "r")
     if file == nil {
-        fprint(get_stderr(), fmt3("Cannot open file ", filename, "\n"))
-        exit(1)
+        return 1
     }
     fseek(file, 0, get_SEEK_END())
     len: i32 = ftell(file)
@@ -54,6 +53,7 @@ pub fn ftext_read(filename: string, filetext: *struc FileText) none {
         }
         str++[] = nil
     }
+    return 0
 }
 
 pub fn ftext_dd(i: i32, j: i32, filetext: *struc FileText) char {

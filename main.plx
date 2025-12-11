@@ -40,7 +40,10 @@ pub fn main(_: i32, args: *string) i32 {
     filename: [32]char = $(nil)
     snprint(filename, 16, fmt3("input/day", num, ".txt"))
 
-    ftext_read(filename, @input)
+    if (ftext_read(filename, @input)) {
+        fprint(get_stderr(), fmt3("Cannot open file ", filename, "\n"))
+        abort()
+    }
     check_answer(part_1(), answers[day][0])
     check_answer(part_2(), answers[day][1])
     ftext_close(@input)
