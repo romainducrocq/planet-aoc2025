@@ -49,5 +49,5 @@ pub fn part_1(none) i64 {
 
 # TODO
 pub fn part_2(none) i64 {
-    return 1
+    return 0
 }

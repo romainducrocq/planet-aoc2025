@@ -18,13 +18,13 @@ answers: [12][2]i64 = $(
     $(1660, 305999729392659),         # day 7
     $(50760, 3206508875),             # day 8
     $(4750176210, 1574684850),        # day 9
-    $(514, 1),                        # day 10
+    $(514, 0),                        # day 10
     $(688, 293263494406608),          # day 11
     $(0, 0)                           # day 12
 )
 
 fn check_answer(part: i64, answer: i64) none {
-    if answer == 1 { # TODO
+    if answer == 0 {
         puts("Not solved")
         return none
     }
