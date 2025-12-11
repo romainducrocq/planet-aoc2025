@@ -1,4 +1,5 @@
 import `libfile`
+use `ctype`
 use `stdio`
 use `stdlib`
 
@@ -59,4 +60,17 @@ pub fn ftext_dd(i: i32, j: i32, filetext: *struc FileText) char {
     return ? (
         i >= 0 and i < filetext[].lines and j >= 0 and j < filetext[].width
     ) then filetext[].text[i][j] else ' '
+}
+
+pub fn parse_num(str: *string) i64 {
+    sign: i32 = 1
+    if str[][] == '-' {
+        sign = -1
+        (str[])++
+    }
+    value: i64 = 0
+    loop while isdigit(str[][]) .. ++(str[]) {
+        value = 10 * value + str[][] - '0'
+    }
+    return sign * value
 }

@@ -1,5 +1,3 @@
 import `libcom/libfile`
 
 extrn input: struc FileText;
-
-pub fn parse_number(str: *string) i64;

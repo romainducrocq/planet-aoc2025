@@ -1,5 +1,4 @@
 import `libutil`
-use `ctype`
 use `stdio`
 use `stdlib`
 use `string`
@@ -33,25 +32,11 @@ fn check_answer(part: i64, answer: i64) none {
     puts(" - OK")
 }
 
-pub fn parse_number(str: *string) i64 {
-    sign: i32 = 1
-    if str[][] == '-' {
-        sign = -1
-        (str[])++
-    }
-    value: i64 = 0
-    loop while isdigit(str[][]) .. ++(str[]) {
-        value = 10 * value + str[][] - '0'
-    }
-    return sign * value
-}
-
 pub fn main(_: i32, args: *string) i32 {
     num: *char = @args[0][strlen(args[0])-2]
     day: i32 = strtol(num, nil, 10)-1
     filename: [32]char = $(nil)
-    snprint(filename, 16,
-        fmt3("input/day", num, ".txt"))
+    snprint(filename, 16, fmt3("input/day", num, ".txt"))
 
     ftext_read(filename, @input)
     check_answer(part_1(), answers[day][0])

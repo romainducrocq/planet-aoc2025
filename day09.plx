@@ -17,9 +17,9 @@ pub fn qsort_compare(a: *any, b: *any) i32 {
 pub fn part_1(none) i64 {
     loop i: i32 = 0 while i < input.lines .. ++i {
         s: string = input.text[i]
-        redtiles[i].x = parse_number(@s)
+        redtiles[i].x = parse_num(@s)
         s++
-        redtiles[i].y = parse_number(@s)
+        redtiles[i].y = parse_num(@s)
     }
     nr_area: i32 = 0
     loop i: i32 = 1 while i < input.lines .. ++i {

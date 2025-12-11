@@ -9,12 +9,12 @@ pub fn part_1(none) i64 {
     count: i32 = 0
     loop i++ while i < input.lines .. ++i {
         line: *char = input.text[i]
-        id: i64 = parse_number(@line)
+        id: i64 = parse_num(@line)
         loop i1: i32 = 0 while input.text[i1][0] ~= nil .. ++i1 {
             line = input.text[i1]
-            from: i64 = parse_number(@line)
+            from: i64 = parse_num(@line)
             line++
-            to: i64 = parse_number(@line)
+            to: i64 = parse_num(@line)
             if from <= id and id <= to {
                 count++
                 break
@@ -54,9 +54,9 @@ pub fn part_2(none) i64 {
     ranges: *struc range_t = nil
     loop i: i32 = 0 while input.text[i][0] ~= nil .. ++i {
         line: *char = input.text[i]
-        from: i64 = parse_number(@line)
+        from: i64 = parse_num(@line)
         line++
-        to: i64 = parse_number(@line)
+        to: i64 = parse_num(@line)
         add_range(@ranges, from, to)
     }
     count: i64 = 0

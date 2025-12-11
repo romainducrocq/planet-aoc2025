@@ -11,7 +11,7 @@ pub fn part_1(none) i64 {
             loop while v[] == ' ' {
                 v++
             }
-            value: i64 = parse_number(@v)
+            value: i64 = parse_num(@v)
             if mode == '+' {
                 result += value
             }

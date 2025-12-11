@@ -19,9 +19,9 @@ pub fn part_1(none) i64 {
             str2++
             len2++
         }
-        n1: i64 = parse_number(@str)
+        n1: i64 = parse_num(@str)
         str++
-        n2: i64 = parse_number(@str)
+        n2: i64 = parse_num(@str)
         if len1 % 2 == 0 or len2 % 2 == 0 {
             len: i32 = ? len1 % 2 == 0 then len1 else len2
             factor: i64 = ? (len == 2
@@ -68,9 +68,9 @@ pub fn part_2(none) i64 {
             str2++
             len2++
         }
-        n1: i64 = parse_number(@str)
+        n1: i64 = parse_num(@str)
         str++
-        n2: i64 = parse_number(@str)
+        n2: i64 = parse_num(@str)
         loop n: i64 = n1 while n <= n2 .. ++n {
             buf: [32]char = $(nil)
             ltostr(buf, n)

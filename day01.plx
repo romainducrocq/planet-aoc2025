@@ -6,7 +6,7 @@ pub fn part_1(none) i64 {
     loop i: i32 = 0 while i < input.lines .. ++i {
         str: string = input.text[i]
         dir: char = str++[]
-        clicks: i64 = parse_number(@str)
+        clicks: i64 = parse_num(@str)
         if dir == 'R' {
             pos = (pos + clicks) % 100
         }
@@ -29,7 +29,7 @@ pub fn part_2(none) i64 {
     loop i: i32 = 0 while i < input.lines .. ++i {
         str: string = input.text[i]
         dir: char = str++[]
-        clicks: i64 = parse_number(@str)
+        clicks: i64 = parse_num(@str)
         if dir == 'R' {
             loop j: i32 = 0 while j < clicks .. ++j {
                 pos++

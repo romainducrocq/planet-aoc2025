@@ -30,11 +30,11 @@ pub fn qsort_compare(a: *any, b: *any) i32 {
 pub fn part_1(none) i64 {
     loop i: i32 = 0 while i < input.lines .. ++i {
         s: *char = input.text[i]
-        boxes[i].x = parse_number(@s)
+        boxes[i].x = parse_num(@s)
         s++
-        boxes[i].y = parse_number(@s)
+        boxes[i].y = parse_num(@s)
         s++
-        boxes[i].z = parse_number(@s)
+        boxes[i].z = parse_num(@s)
         boxes[i].circuit = i
     }
     nr_dist: i32 = 0
