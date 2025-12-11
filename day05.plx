@@ -1,4 +1,4 @@
-import `libutil`
+import `libinput`
 use `stdlib`
 
 pub fn part_1(none) i64 {

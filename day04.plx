@@ -1,4 +1,4 @@
-import `libutil`
+import `libinput`
 
 pub fn part_1(none) i64 {
     removable: i32 = 0

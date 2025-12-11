@@ -1,4 +1,4 @@
-import `libutil`
+import `libinput`
 use `stdlib`
 
 type struc dist_t(box1: i32, box2: i32, dist_sq: i64)

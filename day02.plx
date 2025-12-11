@@ -1,4 +1,4 @@
-import `libutil`
+import `libinput`
 use `ctype`
 use `stdio`
 use `string`
