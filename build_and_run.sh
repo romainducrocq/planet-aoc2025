@@ -2,9 +2,10 @@
 
 function run_day () {
     DAY="${1}"
-    USE_QSORT=1
-    if [ ${1} -eq 8 ] || [ ${1} -eq 9 ]; then
-        USE_QSORT=0
+    LINK_LIB=""
+    if [ ${1} -eq 8 ] ||\
+       [ ${1} -eq 9 ]; then
+        LINK_LIB="-lqsort"
     fi
     if [ ${1} -lt 10 ]; then
         DAY="0${DAY}"
@@ -12,14 +13,6 @@ function run_day () {
     echo ""
     echo "----- Day ${DAY} -----"
     DAY="day${DAY}"
-
-    LINK_LIB=""
-    if [ ${USE_QSORT} -eq 0 ]; then
-        ./libcom/libsort.sh --qsort
-        if [ ${?} -ne 0 ]; then exit 1; fi
-        LINK_LIB="-Llibcom/ -lsort"
-        export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${PWD}/libcom/"
-    fi
 
     planet -O3 ${LINK_LIB} -o build/${DAY} ${DAY}.plx \
         main.plx libcom/libfile.plx

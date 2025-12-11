@@ -1,5 +1,5 @@
 import `libutil`
-import `libcom/libsort`
+use `stdlib`
 
 type struc redtile_t(x: i64, y: i64)
 type struc area_t(redtile1: i32, redtile2: i32, area: i64)
