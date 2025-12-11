@@ -25,7 +25,7 @@ mkdir -p build/
 if [ ! -z "${1}" ]; then
     run_day ${1}
 else
-    for i in $(seq 1 9); do
+    for i in $(seq 1 10); do
         run_day ${i}
     done
 fi
