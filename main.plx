@@ -1,48 +1,8 @@
 import `libutil`
-
-############
-# AOC 2025 #
-############
-
-extrn fn puts(s: string) i32;
-pub fn print_i64(n: i64) i32 {
-    extrn fn printf(format: string, n: i64) i32;
-    return printf("%li", n)
-}
-pub fn snprint_i64(str: string, size: u64, n: i64) i32 {
-    extrn fn snprintf(str: string, size: u64, format: string, n: i64) i32;
-    return snprintf(str, size, "%li", n)
-}
-
-# stdlib.h
-extrn fn exit(status: i32) none;
-
-# string.h
-extrn fn strlen(s: string) u64;
-extrn fn strcpy(dst: string, src: string) *char;
-
-# TODO replace with isdigit and strtol
-
-pub fn is_digit(c: char) i32 {
-    return '0' <= c and c <= '9'
-}
-
-pub fn parse_number(str: *string) i64 {
-    sign: i32 = 1
-    if str[][] == '-' {
-        sign = -1
-        (str[])++
-    }
-    value: i64 = 0
-    loop while is_digit(str[][]) .. ++(str[]) {
-        value = 10 * value + str[][] - '0'
-    }
-    return sign * value
-}
-
-###############
-# Entry Point #
-###############
+use `ctype`
+use `stdio`
+use `stdlib`
+use `string`
 
 extrn fn part_1(none) i64;
 extrn fn part_2(none) i64;
@@ -63,13 +23,27 @@ answers: [12][2]i64 = $(
 )
 
 fn check_answer(part: i64, answer: i64) none {
-    print_i64(part)
+    s: [32]char = $(nil)
+    print(ltostr(s, part))
     if part ~= answer {
         puts(" - Wrong answer")
         ftext_close(@input)
         exit(1)
     }
     puts(" - OK")
+}
+
+pub fn parse_number(str: *string) i64 {
+    sign: i32 = 1
+    if str[][] == '-' {
+        sign = -1
+        (str[])++
+    }
+    value: i64 = 0
+    loop while isdigit(str[][]) .. ++(str[]) {
+        value = 10 * value + str[][] - '0'
+    }
+    return sign * value
 }
 
 pub fn main(_: i32, args: *string) i32 {

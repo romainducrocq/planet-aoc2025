@@ -1,4 +1,5 @@
 import `libutil`
+use `stdlib`
 
 pub fn part_1(none) i64 {
     i: i32 = 0

@@ -2,10 +2,4 @@ import `libcom/libfile`
 
 extrn input: struc FileText;
 
-pub fn is_digit(c: char) i32;
 pub fn parse_number(str: *string) i64;
-
-pub fn snprint_i64(str: string, size: u64, n: i64) i32;
-extrn fn strlen(s: string) u64;
-extrn fn malloc(size: u64) *any;
-extrn fn free(ptr: *any) none;

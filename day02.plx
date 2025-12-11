@@ -1,4 +1,7 @@
 import `libutil`
+use `ctype`
+use `stdio`
+use `string`
 
 pub fn part_1(none) i64 {
     sum: i64 = 0
@@ -6,13 +9,13 @@ pub fn part_1(none) i64 {
     loop {
         str2: string = str
         len1: i32 = 0
-        loop while is_digit(str2[]) {
+        loop while isdigit(str2[]) {
             str2++
             len1++
         }
         str2++
         len2: i32 = 0
-        loop while is_digit(str2[]) {
+        loop while isdigit(str2[]) {
             str2++
             len2++
         }
@@ -55,13 +58,13 @@ pub fn part_2(none) i64 {
     loop {
         str2: string = str
         len1: i32 = 0
-        loop while is_digit(str2[]) {
+        loop while isdigit(str2[]) {
             str2++
             len1++
         }
         str2++
         len2: i32 = 0
-        loop while is_digit(str2[]) {
+        loop while isdigit(str2[]) {
             str2++
             len2++
         }
@@ -69,8 +72,8 @@ pub fn part_2(none) i64 {
         str++
         n2: i64 = parse_number(@str)
         loop n: i64 = n1 while n <= n2 .. ++n {
-            buf: [20]char;
-            snprint_i64(buf, 19, n)
+            buf: [32]char = $(nil)
+            ltostr(buf, n)
             len: i32 = strlen(buf)
             is_match: bool = false
             loop m: i32 = 2 while m <= len .. ++m {
