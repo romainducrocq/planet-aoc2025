@@ -48,11 +48,10 @@ pub fn parse_number(str: *string) i64 {
 
 pub fn main(_: i32, args: *string) i32 {
     num: *char = @args[0][strlen(args[0])-2]
-    filename: [16]char = $(nil)
-    strcpy(filename, "input/day00.txt")
-    filename[9] = num[0]
-    filename[10] = num[1]
-    day: i32 = parse_number(@num)-1
+    day: i32 = strtol(num, nil, 10)-1
+    filename: [32]char = $(nil)
+    snprint(filename, 16,
+        fmt3("input/day", num, ".txt"))
 
     ftext_read(filename, @input)
     check_answer(part_1(), answers[day][0])
