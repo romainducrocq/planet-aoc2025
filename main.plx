@@ -24,6 +24,10 @@ answers: [12][2]i64 = $(
 )
 
 fn check_answer(part: i64, answer: i64) none {
+    if answer == 1 { # TODO
+        puts("Not solved")
+        return none
+    }
     s: [32]char = $(nil)
     print(ltostr(s, part))
     if part ~= answer {
