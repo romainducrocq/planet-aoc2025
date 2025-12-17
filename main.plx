@@ -9,7 +9,7 @@ extrn fn part_2(none) i64;
 pub input: struc FileText = $(nil)
 
 # m4_define(`CHECK_ANSWER', `')
-m4_sinclude(`defcheck.m4')
+m4_sinclude(`defcheck.plx.m4')
 
 answers: [12][2]i64 = $(
 m4_ifdef(`CHECK_ANSWER', `
