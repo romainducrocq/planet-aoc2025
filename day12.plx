@@ -1,7 +1,7 @@
-import `libinput`
-use `stdio`
-use `stdlib`
-use `time`
+import "libinput"
+use "stdio"
+use "stdlib"
+use "time"
 
 nr_variants: [6]i32;
 pieces: [6][8][3][3]char;

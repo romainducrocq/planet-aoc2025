@@ -1,3 +1,3 @@
-import `libcom/libfile`
+import "libcom/libfile"
 
 extrn input: struc FileText;

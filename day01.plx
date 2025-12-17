@@ -1,4 +1,4 @@
-import `libinput`
+import "libinput"
 
 pub fn part_1(none) i64 {
     pos: i64 = 50

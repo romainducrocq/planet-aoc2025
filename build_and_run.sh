@@ -14,7 +14,7 @@ function run_day () {
     echo "----- Day ${DAY} -----"
     DAY="day${DAY}"
 
-    planet -O3 ${LINK_LIB} -o build/${DAY} ${DAY}.plx \
+    planet -O3 -E ${LINK_LIB} -o build/${DAY} ${DAY}.plx \
         main.plx libcom/libfile.plx
     if [ ${?} -ne 0 ]; then exit 1; fi
     ./build/${DAY}

@@ -1,7 +1,7 @@
-import `libinput`
-use `ctype`
-use `stdio`
-use `string`
+import "libinput"
+use "ctype"
+use "stdio"
+use "string"
 
 pub fn part_1(none) i64 {
     sum: i64 = 0

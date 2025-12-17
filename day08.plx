@@ -1,5 +1,5 @@
-import `libinput`
-use `stdlib`
+import "libinput"
+use "stdlib"
 
 type struc dist_t(box1: i32, box2: i32, dist_sq: i64)
 type struc box_t(x: i64, y: i64, z: i64, circuit: i32)
@@ -7,15 +7,15 @@ type struc box_t(x: i64, y: i64, z: i64, circuit: i32)
 dists: [499500]struc dist_t;
 boxes: [1000]struc box_t;
 
-compare_int: i32 = 1
-compare_dist: i32 = 2
-compare: i32 = 0
+m4_define(COMPARE_INT, 1)
+m4_define(COMPARE_DIST, 2)
+compare_def: i32 = 0
 pub fn qsort_compare(a: *any, b: *any) i32 {
-    match compare {
-        -> 1 { # compare_int
+    match compare_def {
+        -> COMPARE_INT {
             return (cast<*i32>(b)[] - cast<*i32>(a)[])
         }
-        -> 2 { # compare_dist
+        -> COMPARE_DIST {
             a_dist: *struc dist_t = cast<*struc dist_t>(a)
             b_dist: *struc dist_t = cast<*struc dist_t>(b)
             return ? b_dist[].dist_sq < a_dist[].dist_sq then 1 else (
@@ -49,7 +49,7 @@ pub fn part_1(none) i64 {
             nr_dist++
         }
     }
-    compare = compare_dist
+    compare_def = COMPARE_DIST
     qsort_f(dists, nr_dist, sizeof(dists[0]))
     loop i: i32 = 0 while i < input.lines .. ++i {
         circuit1: i32 = boxes[dists[i].box1].circuit
@@ -72,7 +72,7 @@ pub fn part_1(none) i64 {
     loop i: i32 = 0 while i < input.lines .. ++i {
         circuit_sizes[boxes[i].circuit]++
     }
-    compare = compare_int
+    compare_def = COMPARE_INT
     qsort_f(circuit_sizes, input.lines, sizeof(circuit_sizes[0]))
     answer: i64 = 1
     loop i: i32 = 0 while i < 3 .. ++i {

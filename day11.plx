@@ -1,7 +1,7 @@
-import `libinput`
-use `stdio`
-use `stdlib`
-use `string`
+import "libinput"
+use "stdio"
+use "stdlib"
+use "string"
 
 type struc out_t;
 type struc node_t(name: [4]char, outs: *struc out_t, paths: i64, next: *struc node_t)
