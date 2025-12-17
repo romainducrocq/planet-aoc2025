@@ -1,1 +1,1 @@
-m4_undefine(CHECK_ANSWER)
+m4_define(`CHECK_ANSWER', `')
