@@ -21,9 +21,22 @@ function run_day () {
     if [ ${?} -ne 0 ]; then exit 1; fi
 }
 
+ARG=${1}
+CHECK="defcheck"
+if [ "${1}" = "--no-check" ]; then
+    if [ -f "${CHECK}.plx.m4" ]; then
+        mv ${CHECK}.plx.m4 ${CHECK}.ignore
+        if [ ${?} -ne 0 ]; then exit 1; fi
+    fi
+    ARG=${2}
+elif [ -f "${CHECK}.ignore" ]; then
+    mv ${CHECK}.ignore ${CHECK}.plx.m4
+    if [ ${?} -ne 0 ]; then exit 1; fi
+fi
+
 mkdir -p build/
-if [ ! -z "${1}" ]; then
-    run_day ${1}
+if [ ! -z "${ARG}" ]; then
+    run_day ${ARG}
 else
     for i in $(seq 1 12); do
         run_day ${i}

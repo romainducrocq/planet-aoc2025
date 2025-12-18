@@ -18,15 +18,17 @@ cd planet/bin/
 
 ### Run AOC 2025
 
-Build and run  
+1. Add your inputs with `input/day00.txt`, from `01` to `12`.
+2. Build and run
 - the solution for a specific day:  
 ```
-./build_and_run.sh [1-12]
+./build_and_run.sh --no-check [1-12]
 ```
 - or all solutions for AOC 2025:  
 ```
-./build_and_run.sh
+./build_and_run.sh --no-check
 ```
+(Running without `--no-check` tests against my own answers.)  
 
 ****
 

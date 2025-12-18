@@ -8,9 +8,7 @@ extrn fn part_2(none) i64;
 
 pub input: struc FileText = $(nil)
 
-# m4_define(`CHECK_ANSWER', `')
-m4_sinclude(`defcheck.plx.m4')
-
+m4_sinclude(`defcheck.plx.m4')m4_dnl
 answers: [12][2]i64 = $(
 m4_ifdef(`CHECK_ANSWER', `
     $(1147, 6789),                    # day 1
@@ -28,7 +26,7 @@ m4_ifdef(`CHECK_ANSWER', `
 ', `
     $(nil)
 ')
-)
+)m4_dnl
 
 fn check_answer(part: i64, answer: i64) none {
     s: [32]char = $(nil)
