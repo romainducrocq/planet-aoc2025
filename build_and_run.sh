@@ -1,10 +1,11 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 function run_day () {
     DAY="${1}"
     LINK_LIB=""
-    if [ ${1} -eq 8 ] ||\
-       [ ${1} -eq 9 ]; then
+    if [ ${1} -eq 8 ]; then
+        LINK_LIB="-lqsort"
+    elif [ ${1} -eq 9 ]; then
         LINK_LIB="-lqsort"
     fi
     if [ ${1} -lt 10 ]; then
